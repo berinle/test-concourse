@@ -1,0 +1,33 @@
+---
+
+jobs:
+- name: build-and-deployment
+  plan:
+  # Get Git Repo
+  - get: source-code
+    trigger: true
+  # Deploy It To PCF
+  - task: deploy-to-pcf
+    file: source-code/ci/tasks/deploy.yml
+    params:
+      app_name: ((app-name))
+      app_host: ((app-host))
+      domain: ((pcf-domain))
+      manifest: manifest.yml
+      api: ((pcf-api))
+      username: ((pcf-username))
+      password: ((pcf-password))
+      organization: ((pcf-organization))
+      space: ((pcf-space))
+      skip_cert_check: true
+
+##############################
+resources:
+# GIT
+- name: source-code
+  type: git
+  username: ((git-username))
+  password: ((git-password))
+  source:
+      uri: https://berinle@bitbucket.org/berinle/test-concourse
+    branch: master
