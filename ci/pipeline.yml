@@ -27,7 +27,7 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://berinle@bitbucket.org/berinle/test-concourse
+    uri: ((git-repo))
     branch: master
     username: ((git-username))
     password: ((git-password))
