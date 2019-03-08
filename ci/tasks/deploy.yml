@@ -17,8 +17,5 @@ run:
     cd source-code \
     && cf api ${api} --skip-ssl-validation \
     && cf login -u ${username} -p ${password} -o ${organization} -s ${space} \
-    #&& cf rename ${app_name} ${app_name}-existing \
     && cf push ${app_name} -f ${manifest} --no-start \
-    && cf start ${app_name} \
-    #&& cf map-route ${app_name} ${domain} --hostname ${app_host} \
-    #&& cf delete -f ${app_name}-existing
+    && cf start ${app_name} 
